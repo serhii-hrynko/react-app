@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: "./src/index.js",
@@ -24,6 +24,7 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin(Object.assign({})),
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "./public/index.html"),
             filename: "index.html"
@@ -60,5 +61,8 @@ module.exports = {
                 }
             }
         ]
+    },
+    devServer: {
+        port: 8080
     }
 };
